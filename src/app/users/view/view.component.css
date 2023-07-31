@@ -1,0 +1,36 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  background-color: #f2f2f2;
+  display: flex-inline;
+  align-items: center;
+  justify-content: center;
+}
+img{
+  border: 2px solid #f2f2f2;
+  border-radius: 50%;
+}
+button{
+  border: none;
+  cursor: pointer;
+  width: 40%;
+  padding: 10px;
+}
+svg{
+  width: 100%;
+  height: 100%;
+  fill: #f2f2f2;
+}
+.customHeading
+{
+  font-family:cursive;
+  font-size: 2rem;
+  font-weight: 600;
+}

@@ -1,0 +1,17 @@
+.formContainer
+{
+  padding: 20px;
+  width: 40%;
+  margin: auto 30%;
+  margin-bottom: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: lavender;
+}
+img{
+  border: 1px solid black;
+  border-radius: 50px;
+  width: 150px;
+  height: 150px;
+  background-color: white;
+}

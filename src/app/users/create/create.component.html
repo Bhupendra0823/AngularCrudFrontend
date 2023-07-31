@@ -1,0 +1,100 @@
+<div class="container border border-dark formContainer ">
+  <h3 class="text-center"><u>{{title}}</u></h3>
+  <br>
+  <form [formGroup]="createForm">
+    <!--Name-->
+    <div class="mb-3 mt-3 col-12 ">
+      <label for="name" class="form-label">Name<b class="text-danger">*</b></label>
+      <input type="text" class="form-control" id="name" placeholder="Enter name" formControlName="fullName">
+      <span *ngIf="createForm.controls['fullName'].invalid && createForm.controls['fullName'].touched"
+        class="text-danger">
+        name is not valid</span>
+    </div>
+    <!--Gender Radio-->
+    <div class="selectGender ">
+      <label for="genderCheck">Gender<b class="text-danger">*</b></label>&nbsp;
+    <div class="form-check">
+      <input type="radio" class="form-check-input" id="male" formControlName="gender" value="Male" checked>
+      <label class="form-check-label" for="male">Male</label>
+    </div>
+    <div class="mb-3">
+      <input type="radio" class="form-check-input" id="Female" formControlName="gender" value="Female">
+      <label class="form-check-label" for="Female">Female</label>
+    </div>
+    <span *ngIf="createForm.controls['gender'].touched && createForm.controls['gender'].invalid" class="text-danger">
+      Choose Gender
+    </span>
+    </div>
+    <!--email input-->
+    <div class="mb-3 col-12 ">
+      <label for="email" class="form-label">Email<b class="text-danger">*</b></label>
+      <input type="text" class="form-control" id="email" placeholder="Enter Email" formControlName="email">
+      <span *ngIf="createForm.controls['email'].invalid && createForm.controls['email'].touched" class="text-danger">
+        Email is invalid</span>
+    </div>
+    <!--mobile input-->
+    <div class="mb-3 col-12 ">
+      <label for="mob" class="form-label">Mobile<b class="text-danger">*</b></label>
+      <input type="text" class="form-control" id="mob" placeholder="Enter mobile number" formControlName="mobile">
+      <span *ngIf="createForm.controls['mobile'].invalid && createForm.controls['mobile'].touched" class="text-danger">
+        Mobile is invalid</span>
+
+    </div>
+
+
+    <div class="col-12">
+      <label class="my-1 mr-2" for="Category">Category<b class="text-danger">*</b></label>
+    <select class="form-select
+     custom-select mb-3 "
+    (change)="changeCat($event)"
+    formControlName="category">
+    <option value="">Choose Category </option>
+    <option *ngFor="let i of cat" [ngValue]="i">
+      {{ i }}
+    </option>
+    </select>
+    <span *ngIf="createForm.controls['category'].invalid &&createForm.controls['category'].touched" class="text-danger">Please choose category</span>
+    </div>
+
+    <br>
+    <!--Profile Picture-->
+
+    <div class="col-12">
+      <label for="formFile" class="form-label">Choose file for Profile Picture</label>
+      <input class="form-control" type="file" formControlName="proPic" id="formFile"
+         (change)="onFileUpload($event)">
+        <span *ngIf="t!=''" class="text-danger">{{t}}</span>
+    </div>
+    <!--let modal defines that the template we used is a modal-->
+    <ng-template #modal let-modal >
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-basic-title">Preview</h3>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <div><b>Name</b>:{{createForm.value.fullName}}</div>
+         <div><b>Email</b>:{{createForm.value.email}}</div>
+         <div><b>Mobile</b>:{{createForm.value.mobile}}</div>
+         <div><b>Gender</b>:{{createForm.value.gender}}</div>
+         <div><b>Category</b>:{{createForm.value.category}}</div>
+         <div><b>Technologies: </b>
+          <ul>
+            <li *ngFor="let tech of createForm.value.technologies">{{tech}}</li>
+          </ul>
+        </div>
+         <div><b>Profile Picture</b>:{{createForm.value.proPic}}</div>
+         <div><b>Action</b></div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="modal.close()" class="btn btn-secondary" >Cancel</button>
+        <button (click)="share();modal.close()" [routerLink]="['../view']" class="btn btn-primary">Submit</button>
+      </div>
+    </ng-template>
+    <br>
+    <div class="text-center">
+    <button (click)="checkAllValidation(modal)" type="submit" class="btn btn-primary">Preview</button>
+    </div>
+  </form>
+</div>
